@@ -13,7 +13,4 @@ __pycache__/
 # Variables de entorno
 .env
 
-# Material de la práctica (no forma parte del código)
-Desarrollo Django React.docx
-*.pdf
-~$*
+
