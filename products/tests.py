@@ -1,13 +1,15 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from rest_framework.test import APIClient
 from .models import Category, Product
+
+User = get_user_model()
 
 
 class CategoriaAPITest(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.usuario = User.objects.create_user(username='cliente_tienda', password='tienda2026')
+        self.usuario = User.objects.create_user(username='cliente_tienda', email='cliente@tienda.com', password='tienda2026')
         self.client.force_authenticate(user=self.usuario)
         self.categoria_hogar = Category.objects.create(name='Hogar')
 
@@ -27,7 +29,7 @@ class CategoriaAPITest(TestCase):
 class ProductoAPITest(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.usuario = User.objects.create_user(username='cliente_tienda', password='tienda2026')
+        self.usuario = User.objects.create_user(username='cliente_tienda', email='cliente@tienda.com', password='tienda2026')
         self.client.force_authenticate(user=self.usuario)
         self.categoria_ropa = Category.objects.create(name='Ropa')
         self.camiseta = Product.objects.create(
